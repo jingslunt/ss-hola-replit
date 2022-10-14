@@ -18,8 +18,8 @@ echo "run hola"
 nohup ./hola-proxy -country jp > /dev/null 2>&1 &
 
 echo "shadowsocks"
-export HTTPS_PROXY=http://127.0.0.1:8080
-export HTTP_PROXY=http://127.0.0.1:8080
-export NO_PROXY=.hola.org,hola.org,.local,local,localhost,127.0.0.0/8,10.0.0.0/8,172.16.0.0/16,172.20.0.0/16,192.168.0.0/16
+#export HTTPS_PROXY=http://127.0.0.1:8080
+#export HTTP_PROXY=http://127.0.0.1:8080
+#export NO_PROXY=.hola.org,hola.org,.local,local,localhost,127.0.0.0/8,10.0.0.0/8,172.16.0.0/16,172.20.0.0/16,192.168.0.0/16
 
-go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
+usr/bin/mgraftcp  --http_proxy=127.0.0.1:8080 go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
