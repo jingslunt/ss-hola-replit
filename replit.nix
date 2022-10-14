@@ -8,5 +8,6 @@
         pkgs.gcc
         pkgs.go
         pkgs.git
+        pkgs.nettools
     ];
 }
