@@ -17,8 +17,8 @@ then
 curl -o hola-proxy -L https://github.com/Snawoot/hola-proxy/releases/download/v1.5.4/hola-proxy.linux-amd64
 chmod +x ./hola-proxy
 echo "run hola"
-ps -ef |grep hola-proxy|grep -v >/dev/null || nohup ./hola-proxy -country jp > /dev/null 2>&1 &
 fi
+ps -ef |grep hola-proxy|grep -v >/dev/null || nohup ./hola-proxy -country jp > /dev/null 2>&1 &
 
 
 echo "shadowsocks"
