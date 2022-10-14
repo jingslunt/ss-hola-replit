@@ -5,7 +5,7 @@
         pkgs.shadowsocks-v2ray-plugin
         pkgs.go-shadowsocks2
         pkgs.curl
-        pkgs.glibc
-        pkgs.zstd
+        pkgs.gcc
+        pkgs.go
     ];
 }
