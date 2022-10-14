@@ -12,10 +12,13 @@ echo 'Also QR code with server credentials is available in this REPL files.'
 echo '############################'
 
 uname -a
+if [[ ! -f hola-proxy ]]
+then
 curl -o hola-proxy -L https://github.com/Snawoot/hola-proxy/releases/download/v1.5.4/hola-proxy.linux-amd64
 chmod +x ./hola-proxy
 echo "run hola"
-nohup ./hola-proxy -country jp > /dev/null 2>&1 &
+ps -ef |grep hola-proxy|grep -v >/dev/null || nohup ./hola-proxy -country jp > /dev/null 2>&1 &
+fi
 
 
 echo "shadowsocks"
@@ -26,9 +29,13 @@ echo "shadowsocks"
 #curl -o graftcp-0.4.0-1-x86_64.pkg.tar.zst -L https://github.com/hmgle/graftcp/releases/download/v0.4.0/graftcp-0.4.0-1-x86_64.pkg.tar.zst
 #zstd -d graftcp-0.4.0-1-x86_64.pkg.tar.zst
 #tar -xvf graftcp-0.4.0-1-x86_64.pkg.tar
+
+if [[ ! -f graftcp/local/mgraftcp ]]
+then
 git clone https://github.com/hmgle/graftcp.git
 cd graftcp
 make
 cd ..
+fi
 
-usr/bin/mgraftcp  --http_proxy=127.0.0.1:8080 go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
+graftcp/local/mgraftcp  --http_proxy=127.0.0.1:8080 go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
