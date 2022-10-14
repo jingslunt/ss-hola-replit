@@ -38,5 +38,5 @@ make
 cd ..
 fi
 
-sleep 10
+
 graftcp/local/mgraftcp --enable-debug-log --http_proxy=127.0.0.1:8888  go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
