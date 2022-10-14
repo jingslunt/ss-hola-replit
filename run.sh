@@ -18,7 +18,7 @@ curl -o hola-proxy -L https://github.com/Snawoot/hola-proxy/releases/download/v1
 chmod +x ./hola-proxy
 echo "run hola"
 fi
-ps -ef |grep hola-proxy|grep -v >/dev/null || nohup ./hola-proxy -country jp > /dev/null 2>&1 &
+ps -ef |grep hola-proxy|grep -v >/dev/null || nohup ./hola-proxy -bind-address 127.0.0.1:8888 -country jp > /dev/null 2>&1 &
 
 
 echo "shadowsocks"
@@ -38,4 +38,4 @@ make
 cd ..
 fi
 
-graftcp/local/mgraftcp  --http_proxy=127.0.0.1:8080 go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
+graftcp/local/mgraftcp  --http_proxy=127.0.0.1:8888 go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
