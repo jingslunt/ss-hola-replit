@@ -9,6 +9,6 @@
         pkgs.go
         pkgs.git
         pkgs.nettools
-        pkgs.proxychains-ng
+        pkgs.psmisc
     ];
 }
