@@ -27,7 +27,8 @@ then
 curl -o gg -L https://github.com/mzz2017/gg/releases/download/v0.2.13/gg-linux-x86_64
 chmod +x gg
 fi
-
+ps -ef |grep go-shadowsocks2|grep -v grep >/dev/null && killall go-shadowsocks2
+ps -ef |grep v2ray-plugin|grep -v grep >/dev/null && killall v2ray-plugin
 
 ./gg  -vv --noudp  --node http://127.0.0.1:8888 go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@0.0.0.0:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
 
