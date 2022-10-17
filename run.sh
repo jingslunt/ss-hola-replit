@@ -21,22 +21,14 @@ fi
 ps -ef |grep hola-proxy|grep -v grep >/dev/null || nohup ./hola-proxy -bind-address 127.0.0.1:8888 -country jp > /dev/null 2>&1 &
 
 
-echo "shadowsocks"
-#export HTTPS_PROXY=http://127.0.0.1:8080
-#export HTTP_PROXY=http://127.0.0.1:8080
-#export NO_PROXY=.hola.org,hola.org,.local,local,localhost,127.0.0.0/8,10.0.0.0/8,172.16.0.0/16,172.20.0.0/16,192.168.0.0/16
 
-#curl -o graftcp-0.4.0-1-x86_64.pkg.tar.zst -L https://github.com/hmgle/graftcp/releases/download/v0.4.0/graftcp-0.4.0-1-x86_64.pkg.tar.zst
-#zstd -d graftcp-0.4.0-1-x86_64.pkg.tar.zst
-#tar -xvf graftcp-0.4.0-1-x86_64.pkg.tar
-
-if [[ ! -f graftcp/local/mgraftcp ]]
+if [[ ! -f gg ]]
 then
-git clone https://github.com/hmgle/graftcp.git
-cd graftcp
-make
-cd ..
+curl -o gg -L https://github.com/mzz2017/gg/releases/download/v0.2.13/gg-linux-x86_64
+chmod +x gg
 fi
 
 
-graftcp/local/mgraftcp --enable-debug-log --http_proxy=127.0.0.1:8888  go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
+./gg  -vv --noudp  --node http://127.0.0.1:8888 go-shadowsocks2 -s 'ss://AEAD_CHACHA20_POLY1305:'"${password}"'@0.0.0.0:8488' -verbose -plugin v2ray-plugin -plugin-opts "server" -udp=false
+
+sleep 120
